@@ -1,0 +1,132 @@
+<h1>Top Heading</h1>
+<div class="container">
+  <div class="flex-main">
+    <div class="flex-main main-1">
+      <div class="flex-item item-1">
+        <h2>Filters:</h2>
+      </div>
+      <div class="flex-item item-2">
+        <div class="dropdown">
+          <select name="country1" #country>
+            <option value="" class="dropdown-item">All Country</option>
+            <option value="ar" class="dropdown-item">Argentina</option>
+            <option value="au" class="dropdown-item">Australia</option>
+            <option value="at" class="dropdown-item">Austria</option>
+            <option value="be" class="dropdown-item">Belgium</option>
+            <option value="br" class="dropdown-item">Brazilia</option>
+            <option value="bg" class="dropdown-item">Bulgaria</option>
+            <option value="ca" class="dropdown-item">Canada</option>
+            <option value="cn" class="dropdown-item">China</option>
+            <option value="cz" class="dropdown-item">Czechia</option>
+            <option value="eg" class="dropdown-item">Egypt</option>
+            <option value="fr" class="dropdown-item">France</option>
+            <option value="de" class="dropdown-item">Germany</option>
+            <option value="gr" class="dropdown-item">Greece</option>
+            <option value="hk" class="dropdown-item">Hong Kong</option>
+            <option value="in" class="dropdown-item">India</option>
+            <option value="id" class="dropdown-item">Indonesia</option>
+            <option value="ie" class="dropdown-item">Ireland</option>
+            <option value="il" class="dropdown-item">Israel</option>
+            <option value="it" class="dropdown-item">Italy</option>
+            <option value="jp" class="dropdown-item">Japan</option>
+            <option value="lv" class="dropdown-item">Latvia</option>
+            <option value="lt" class="dropdown-item">Lithuania</option>
+            <option value="my" class="dropdown-item">Malaysia</option>
+            <option value="mx" class="dropdown-item">Mexico</option>
+            <option value="ma" class="dropdown-item">Morocco</option>
+            <option value="nl" class="dropdown-item">Netherlands</option>
+            <option value="nz" class="dropdown-item">New Zealand</option>
+            <option value="ng" class="dropdown-item">Nigeria</option>
+            <option value="no" class="dropdown-item">Norway</option>
+            <option value="ph" class="dropdown-item">Philippines</option>
+            <option value="pl" class="dropdown-item">Poland</option>
+            <option value="pt" class="dropdown-item">Portugal</option>
+            <option value="ro" class="dropdown-item">Romania</option>
+            <option value="kr" class="dropdown-item">Republic of Korea</option>
+            <option value="ru" class="dropdown-item">Russian</option>
+            <option value="sa" class="dropdown-item">Saudi Arabia</option>
+            <option value="rs" class="dropdown-item">Serbia</option>
+            <option value="sg" class="dropdown-item">Singapore</option>
+            <option value="sk" class="dropdown-item">Slovakia</option>
+            <option value="si" class="dropdown-item">Slovenia</option>
+            <option value="se" class="dropdown-item">Sweden</option>
+            <option value="ch" class="dropdown-item">Switzerland</option>
+            <option value="tw" class="dropdown-item">Taiwan</option>
+            <option value="th" class="dropdown-item">Thailand</option>
+            <option value="tr" class="dropdown-item">Türkiye</option>
+            <option value="ua" class="dropdown-item">Ukraine</option>
+            <option value="ae" class="dropdown-item">
+              United Arab Emirates
+            </option>
+            <option value="gb" class="dropdown-item">United Kingdom</option>
+            <option value="us" class="dropdown-item">USA</option>
+            <option value="ve" class="dropdown-item">Venezuela</option>
+            <option value="za" class="dropdown-item">Zambia</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex-item item-3">
+        <div class="dropdown">
+          <select name="category1" #category>
+            <option value="" class="dropdown-item">All category</option>
+            <option value="business" class="dropdown-item">Business</option>
+            <option value="entertainment" class="dropdown-item">
+              Entertainment
+            </option>
+            <option value="general" class="dropdown-item">General</option>
+            <option value="health" class="dropdown-item">Health</option>
+            <option value="science" class="dropdown-item">Science</option>
+            <option value="sports" class="dropdown-item">Sports</option>
+            <option value="technology" class="dropdown-item">Technology</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="flex-main main-2">
+      <div class="flex-item item-4">
+        <button
+          (click)="onCountryandCategorySelected(country.value, category.value)"
+          class="btn btn-primary"
+        >
+          Filter
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div
+    *ngFor="
+      let d of topheadingDisplay
+        | paginate
+          : { itemsPerPage: 5, currentPage: page, totalItems: totalLenght }
+    "
+  >
+    <div class="card">
+      <div class="card-header">
+        <h3>{{ d.title }}</h3>
+      </div>
+      <div class="card-body">
+        <div class="row g-0">
+          <div class="col-md-8">
+            <div class="card-body">
+              <p class="card-text">
+                {{ d.description }}
+              </p>
+              <a href="{{ d.url }}" class="btn btn-primary">Article URL</a>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <img src="{{ d.urlToImage }}" class="img-thumbnail rounded-start" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls
+    class="pagination-style"
+    *ngIf="topheadingDisplay.length > 5"
+    (pageChange)="page = $event"
+  ></pagination-controls>
+</div>

@@ -1,0 +1,47 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+.box > *:first-child {
+  align-self: stretch;
+}
+.box .selected {
+  align-self: center;
+}
+
+.container {
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-top: 40px;
+}
+.card {
+  margin: 10px;
+}
+.btn-group {
+  margin-left: 10px;
+  padding-left: 10px;
+}
+.flex-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 10px;
+}
+.main-1 {
+  justify-content: space-between;
+  min-width: 30em;
+}
+h1 {
+  text-align: center;
+  margin-top: 10px;
+}
+.pagination-style {
+  margin: 10px;
+  text-align: center;
+}

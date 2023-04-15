@@ -1,0 +1,59 @@
+<h1>Everything</h1>
+
+<div class="container">
+  <h3>Search ...</h3>
+  <div class="flex-main">
+    <div class="flex-search">
+      <div class="search">
+        <input
+          class="form-control"
+          type="text"
+          autocomplete="off"
+          placeholder="Search ..."
+          #search
+        />
+      </div>
+    </div>
+    <div class="flex-main item-2">
+      <button (click)="getSearchNews(search.value)" class="btn btn-primary">
+        Filter
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div
+    *ngFor="
+      let d of technewDisplay
+        | paginate : { itemsPerPage: 10, currentPage: page }
+    "
+  >
+    <div class="card">
+      <div class="card-header">
+        <h3>{{ d.title }}</h3>
+      </div>
+      <div class="card-body">
+        <div class="row g-0">
+          <div class="col-md-8">
+            <div class="card-body">
+              <p class="card-text">
+                {{ d.content }}
+              </p>
+              <a href="{{ d.url }}" class="btn btn-primary">Article URL</a>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <img src="{{ d.urlToImage }}" class="img-thumbnail rounded-start" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls
+    class="pagination-style"
+    *ngIf="technewDisplay.length > 10"
+    (pageChange)="page = $event"
+  >
+  </pagination-controls>
+</div>
